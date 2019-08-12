@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-
 @Service
 public class AppCategoryServiceImpl implements AppCategoryService {
 
@@ -14,7 +13,8 @@ public class AppCategoryServiceImpl implements AppCategoryService {
     private AppCategoryMapper mapper;
 
     @Override
-    public List<AppCategory> getAppCategoryListByParentId(Integer parentId) throws Exception {
+    public List<AppCategory> getAppCategoryListByParentId(Integer parentId)
+            throws Exception {
         return mapper.getAppCategoryListByParentId(parentId);
     }
 }
