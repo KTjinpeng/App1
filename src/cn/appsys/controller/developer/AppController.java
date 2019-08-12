@@ -1,6 +1,5 @@
 package cn.appsys.controller.developer;
 
-
 import cn.appsys.pojo.*;
 import cn.appsys.service.developer.AppCategoryService;
 import cn.appsys.service.developer.AppInfoService;
@@ -25,14 +24,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * APP 信息管理维护
- */
 @Controller
-@RequestMapping(value ="/dev/flatform/app")
+@RequestMapping(value="/dev/flatform/app")
 public class AppController {
     private Logger logger = Logger.getLogger(AppController.class);
-
     @Resource
     private AppInfoService appInfoService;
     @Resource
@@ -42,9 +37,8 @@ public class AppController {
     @Resource
     private AppVersionService appVersionService;
 
-
     @RequestMapping(value="/list")
-    public String getAppInfoList(Model model, HttpSession session,
+    public String getAppInfoList(Model model,HttpSession session,
                                  @RequestParam(value="querySoftwareName",required=false) String querySoftwareName,
                                  @RequestParam(value="queryStatus",required=false) String _queryStatus,
                                  @RequestParam(value="queryCategoryLevel1",required=false) String _queryCategoryLevel1,
@@ -168,7 +162,7 @@ public class AppController {
      * @param pid
      * @return
      */
-    @RequestMapping(value="/datadictionarylist.json",method= RequestMethod.GET)
+    @RequestMapping(value="/datadictionarylist.json",method=RequestMethod.GET)
     @ResponseBody
     public List<DataDictionary> getDataDicList (@RequestParam String tcode){
         logger.debug("getDataDicList tcode ============ " + tcode);
@@ -214,7 +208,7 @@ public class AppController {
      * @return
      */
     @RequestMapping(value="/appinfoaddsave",method=RequestMethod.POST)
-    public String addSave(AppInfo appInfo, HttpSession session, HttpServletRequest request,
+    public String addSave(AppInfo appInfo,HttpSession session,HttpServletRequest request,
                           @RequestParam(value="a_logoPicPath",required= false) MultipartFile attach){
 
         String logoPicPath =  null;
@@ -243,7 +237,7 @@ public class AppController {
                     return "developer/appinfoadd";
                 }
                 logoPicPath = request.getContextPath()+"/statics/uploadfiles/"+fileName;
-                logoLocPath = path+ File.separator+fileName;
+                logoLocPath = path+File.separator+fileName;
             }else{
                 request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_3);
                 return "developer/appinfoadd";
@@ -273,7 +267,7 @@ public class AppController {
     @RequestMapping(value="/appversionadd",method=RequestMethod.GET)
     public String addVersion(@RequestParam(value="id")String appId,
                              @RequestParam(value="error",required= false)String fileUploadError,
-                             AppVersion appVersion, Model model){
+                             AppVersion appVersion,Model model){
         logger.debug("fileUploadError============> " + fileUploadError);
         if(null != fileUploadError && fileUploadError.equals("error1")){
             fileUploadError = Constants.FILEUPLOAD_ERROR_1;
@@ -402,7 +396,7 @@ public class AppController {
 
     /**
      * 判断APKName是否唯一
-     * @param APKName
+     * @param apkName
      * @return
      */
     @RequestMapping(value="/apkexist.json",method=RequestMethod.GET)
@@ -637,7 +631,7 @@ public class AppController {
      * @return
      */
     @RequestMapping(value="/appinfomodifysave",method=RequestMethod.POST)
-    public String modifySave(AppInfo appInfo, HttpSession session, HttpServletRequest request,
+    public String modifySave(AppInfo appInfo,HttpSession session,HttpServletRequest request,
                              @RequestParam(value="attach",required= false) MultipartFile attach){
         String logoPicPath =  null;
         String logoLocPath =  null;
